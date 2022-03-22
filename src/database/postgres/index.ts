@@ -11,9 +11,9 @@ export const postgres = async () => {
 			password: Envs.PG_PASSWORD,
 			database: Envs.PG_DATABASE,
 			entities: [__dirname + "dist/**/*.entity.ts"],
-			synchronize: false,
+			synchronize: true,
 			verboseRetryLog: true,
-			autoLoadEntities: false,
+			autoLoadEntities: true,
 			logging: true,
 		}),
 	});

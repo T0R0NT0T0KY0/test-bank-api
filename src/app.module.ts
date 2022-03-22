@@ -1,17 +1,15 @@
 import { Module } from "@nestjs/common";
 import { postgres } from "./database/postgres";
 import { UsersModule } from "./components/users/users.module";
-import { GraphQLModule } from "@nestjs/graphql";
+import { graphql } from "./graphql";
+import { QuestsModule } from "./components/quests/quests.module";
 
 @Module({
 	imports: [
 		postgres(),
+		graphql(),
 		UsersModule,
-		GraphQLModule.forRoot({
-			autoSchemaFile: "schema.gql",
-			sortSchema: true,
-			playground: true,
-		}),
+		QuestsModule
 	],
 	providers: [],
 })

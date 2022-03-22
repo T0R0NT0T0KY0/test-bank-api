@@ -19,14 +19,34 @@ export class UserEntity {
 	username: string;
 
 	@Field()
-	@Column({ type: "text" })
+	@Column({ type: "text", name: "display_name" })
 	displayName: string;
 
 	@Field()
-	@CreateDateColumn()
-	createdAt: Date;
+	@UpdateDateColumn({ name: "updated_at" })
+	updatedAt: Date;
 
 	@Field()
-	@UpdateDateColumn()
-	updatedAt: Date;
+	@CreateDateColumn({ name: "created_at" })
+	createdAt: Date;
 }
+
+//query {
+//   user {
+//     id
+//     username
+//     team {
+//       id
+//       name
+//       points
+//       users {
+//         id
+//         name
+//         team {
+//           id
+//           name
+//         }
+//       }
+//     }
+//   }
+// }

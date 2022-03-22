@@ -1,14 +1,13 @@
 import {
 	Column,
 	CreateDateColumn,
-	Entity,
+	Entity, JoinColumn,
 	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from "typeorm";
 import { Field, ID, ObjectType } from "@nestjs/graphql";
 import { UserEntity } from "./user.entity";
-import { JoinColumn } from "typeorm/browser";
 
 @ObjectType()
 @Entity("ds_users")
@@ -18,20 +17,19 @@ export class UserPasswordEntity {
 	id: number;
 
 	@Field()
-	@Column()
-	@OneToOne(() => UserEntity)
+	@OneToOne(() => UserEntity, {nullable: false, })
 	@JoinColumn()
-	userId: UserEntity;
+	user: UserEntity;
 
 	@Field()
 	@Column({ type: "text" })
 	password: string;
 
 	@Field()
-	@CreateDateColumn()
-	createdAt: Date;
+	@UpdateDateColumn({ name: "updated_at" })
+	updatedAt: Date;
 
 	@Field()
-	@UpdateDateColumn()
-	updatedAt: Date;
+	@CreateDateColumn({ name: "created_at" })
+	createdAt: Date;
 }
